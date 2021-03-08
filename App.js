@@ -1,21 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { useFonts } from 'expo-font';
+import AppLoading from 'expo-app-loading';
+import Navigator from './routes/drawer';
+
+
 
 export default function App() {
+  const [loaded] = useFonts({
+    LobsterBold: require('./assets/fonts/LobsterTwo-Bold.ttf'),
+    LobsterRegular: require('./assets/fonts/LobsterTwo-Regular.ttf'),
+  });
+
+  if(loaded) {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <Navigator />
   );
+  }else{
+    return <AppLoading />;
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
